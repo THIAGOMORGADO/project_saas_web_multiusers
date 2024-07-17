@@ -8,6 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import { toast } from "@/components/ui/use-toast";
 import { create_Accounts } from '@/app/actions/createNewAccoutcs';
+import { useRouter } from 'next/navigation';
 
 const schema = yup.object({
   name: yup.string().min(3, { message: 'Nome deve ter no mínimo 3 caracteres' }),
@@ -17,10 +18,10 @@ const schema = yup.object({
 });
 
 export default function CreateAccounts() {
+  const router = useRouter()
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     resolver: yupResolver(schema)
   });
-  
   const onSubmit = async (data: any) => {
     try {
       const newUser = await create_Accounts(data);
@@ -29,9 +30,8 @@ export default function CreateAccounts() {
         title: 'Conta criada com sucesso',
         description: 'Você já pode fazer login',
       })
-
+      router.push('/auth/SignIn')
       reset(); // Reset the form fields
-
     } 
     catch (error) {
       console.log(error);
@@ -41,7 +41,6 @@ export default function CreateAccounts() {
         description: 'Email já cadastrado',
       })
     }
-   
   }
   return(
   <div className="flex items-center justify-center min-h-screen bg-gray-900">

@@ -28,18 +28,14 @@ const handleSub = form.handleSubmit(async (data: any) => {
   })
 })
 
-async function handleSignInWithGithub() {
-  await signIn('github', {callbackUrl: '/dashboard'})
-}
-
 async function handleSignInWithGoogle() {
   await signIn('google', {callbackUrl: '/dashboard'})
 }
   return (
-    
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
-      <div className="bg-gray-800 p-8 rounded-lg shadow-md w-full max-w-md">
+      <div className="bg-gray-800 p-8 rounded-lg shadow-md w-full max-w-md flex flex-col">
         <h2 className="text-2xl font-bold mb-6 text-center text-white">Login</h2>
+        <div className="flex flex-col px-10 py-5">
         <form onSubmit={handleSub}>
           <div className="mb-4">
             <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="email">
@@ -72,25 +68,20 @@ async function handleSignInWithGoogle() {
               Entra
            </Button>
           </div>
-         
         </form>
-        <div className="flex flex-row items-center justify-center gap-10 mt-10">
-          <div className="flex items-center justify-center">
-            <button onClick={handleSignInWithGithub} className="flex items-center justify-center w-12 h-12 bg-black rounded-full">
-              <GitHubLogoIcon className="h-6 w-6 text-white" />
-            </button>
-          </div>
+        <div className="flex flex-row items-center justify-center gap-6 mt-8">
           <div className="flex items-center justify-center">
             <button onClick={handleSignInWithGoogle} className="flex items-center justify-center w-12 h-12 bg-black rounded-full">
               <FcGoogle className="h-6 w-6 text-white sm:h-4 sm:w-4" />
             </button>
           </div>
         </div>
-        <div className="flex items-center  justify-center w-[50%] mx-auto mt-10">
-          <Button onClick={() => router.push('/auth/createAccounts')} className='flex items-center justify-center gap-2 border-2 border-gray-400 rounded-md p-2'>
+        <div className="flex items-center  justify-center  w-[50%] mx-auto mt-8">
+          <Link href='/auth/createAccounts' className=' flex items-center justify-center gap-2 '>
               <FaUserPlus className='h-4 w-4 text-white' />
               <span className='text-white'>Criar conta</span>
-          </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

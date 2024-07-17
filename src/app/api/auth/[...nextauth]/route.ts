@@ -7,9 +7,8 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+const handlers  =NextAuth({
 
-export const { handlers, auth, signIn, signOut } =NextAuth({
-  adapter: PrismaAdapter(prisma), // Ensure this matches the updated import
   pages: {
     signIn: '/',
     signOut: '/',
@@ -66,21 +65,21 @@ export const { handlers, auth, signIn, signOut } =NextAuth({
       }
     }),
     GitHubProvider({
-      clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET as string
+      clientId: process.env.GITHUB_CLIENT_ID!,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET!
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || '',
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
-
-      authorization: {
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      authorization:{
         params: {
           prompt: 'consent',
-          access_type: 'offline',
-          response_type: 'code'
+          access_type: 'offline'
         }
       }
     })
-  ]
-  
+  ],
+  // adapter: PrismaAdapter(prisma),
 })
+
+export { handlers as GET, handlers as POST };
