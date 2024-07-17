@@ -65,22 +65,7 @@ export const { handlers, auth, signIn, signOut } =NextAuth({
         return foundUser
       }
     }),
-    // GitHubProvider({
-    //   clientId: process.env.GITHUB_ID as string,
-    //   clientSecret: process.env.GITHUB_SECRET as string
-    // }),
-    // GoogleProvider({
-    //   clientId: process.env.GOOGLE_CLIENT_ID || '',
-    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
-
-    //   authorization: {
-    //     params: {
-    //       prompt: 'consent',
-    //       access_type: 'offline',
-    //       response_type: 'code'
-    //     }
-    //   }
-    // })
+   
   ]
   
 })
