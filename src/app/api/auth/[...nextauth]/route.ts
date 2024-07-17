@@ -66,12 +66,12 @@ export const { handlers, auth, signIn, signOut } =NextAuth({
       }
     }),
     GitHubProvider({
-      clientId: process.env.GITHUB_CLIENT_ID!,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET!
+      clientId: 'Ov23lis7k5GsGujODLMF',
+      clientSecret: '4a91e955a34674d575e737d0917e67e5a76c90d0'
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      clientId: '300185906040-damiabidc6eu2qhbne6bveiu4aob7ath.apps.googleusercontent.com',
+      clientSecret: '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',
 
       authorization: {
         params: {
